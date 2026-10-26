@@ -1,0 +1,173 @@
+{
+  "captured_at_utc": "2026-10-26T08:05:27+00:00",
+  "environment": {
+    "target": "http://localhost:8080",
+    "python": "3.9.6",
+    "platform": "Darwin",
+    "engine": "deterministic router (AI environment variables disabled for benchmark)",
+    "services": "in-process synthetic adapters; 60\u2013180 ms random delay, 5x in slow mode",
+    "execution": "sequential requests; nearest-rank p50/p95; not a concurrency benchmark"
+  },
+  "phases": {
+    "normal": {
+      "sample_count": 12,
+      "server_ms_p50": 148,
+      "server_ms_p95": 177,
+      "round_trip_ms_p50": 151,
+      "round_trip_ms_p95": 179,
+      "samples": [
+        {
+          "query": "Why did my EMI increase?",
+          "server_ms": 177,
+          "round_trip_ms": 179,
+          "ok": true
+        },
+        {
+          "query": "What if I prepay 50000?",
+          "server_ms": 159,
+          "round_trip_ms": 162,
+          "ok": true
+        },
+        {
+          "query": "What about 20000 instead?",
+          "server_ms": 143,
+          "round_trip_ms": 145,
+          "ok": true
+        },
+        {
+          "query": "Check my last payment",
+          "server_ms": 164,
+          "round_trip_ms": 168,
+          "ok": true
+        },
+        {
+          "query": "Why did my EMI increase?",
+          "server_ms": 140,
+          "round_trip_ms": 143,
+          "ok": true
+        },
+        {
+          "query": "What if I prepay 50000?",
+          "server_ms": 171,
+          "round_trip_ms": 174,
+          "ok": true
+        },
+        {
+          "query": "What about 20000 instead?",
+          "server_ms": 154,
+          "round_trip_ms": 157,
+          "ok": true
+        },
+        {
+          "query": "Check my last payment",
+          "server_ms": 148,
+          "round_trip_ms": 151,
+          "ok": true
+        },
+        {
+          "query": "Why did my EMI increase?",
+          "server_ms": 146,
+          "round_trip_ms": 150,
+          "ok": true
+        },
+        {
+          "query": "What if I prepay 50000?",
+          "server_ms": 131,
+          "round_trip_ms": 137,
+          "ok": true
+        },
+        {
+          "query": "What about 20000 instead?",
+          "server_ms": 151,
+          "round_trip_ms": 154,
+          "ok": true
+        },
+        {
+          "query": "Check my last payment",
+          "server_ms": 146,
+          "round_trip_ms": 150,
+          "ok": true
+        }
+      ]
+    },
+    "slow": {
+      "sample_count": 4,
+      "server_ms_p50": 879,
+      "server_ms_p95": 888,
+      "round_trip_ms_p50": 881,
+      "round_trip_ms_p95": 892,
+      "samples": [
+        {
+          "query": "Why did my EMI increase?",
+          "server_ms": 751,
+          "round_trip_ms": 755,
+          "ok": true
+        },
+        {
+          "query": "What if I prepay 50000?",
+          "server_ms": 888,
+          "round_trip_ms": 892,
+          "ok": true
+        },
+        {
+          "query": "What about 20000 instead?",
+          "server_ms": 884,
+          "round_trip_ms": 889,
+          "ok": true
+        },
+        {
+          "query": "Check my last payment",
+          "server_ms": 879,
+          "round_trip_ms": 881,
+          "ok": true
+        }
+      ]
+    },
+    "payments_failure": {
+      "sample_count": 4,
+      "server_ms_p50": 178,
+      "server_ms_p95": 180,
+      "round_trip_ms_p50": 182,
+      "round_trip_ms_p95": 183,
+      "samples": [
+        {
+          "query": "show failed payments",
+          "server_ms": 180,
+          "round_trip_ms": 183,
+          "ok": false
+        },
+        {
+          "query": "show failed payments",
+          "server_ms": 179,
+          "round_trip_ms": 182,
+          "ok": false
+        },
+        {
+          "query": "show failed payments",
+          "server_ms": 166,
+          "round_trip_ms": 169,
+          "ok": false
+        },
+        {
+          "query": "show failed payments",
+          "server_ms": 178,
+          "round_trip_ms": 182,
+          "ok": false
+        }
+      ]
+    }
+  },
+  "checks": {
+    "cross_session_token_rejected": true,
+    "duplicate_submission_idempotent": true,
+    "stale_confirmation_rejected": true,
+    "payments_failure_safe": true,
+    "card_action_persisted": true,
+    "request_history_persisted": true,
+    "malformed_inputs_rejected": true
+  },
+  "voice_measurements": {
+    "status": "not recorded",
+    "reason": "Requires a real microphone and speech-capable browser; no synthetic timings substituted."
+  }
+}

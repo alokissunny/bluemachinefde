@@ -1,0 +1,41 @@
+name: Prototype checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Backend and reusable action tests
+        working-directory: blue-servicing
+        run: python -m unittest -v
+      - name: Frontend syntax
+        run: node --check blue-servicing/static/app.js
+      - name: HTTP journeys and latency evidence
+        run: |
+          python blue-servicing/server.py &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          python - <<'PY'
+          import time, urllib.request
+          for attempt in range(30):
+              try:
+                  urllib.request.urlopen('http://localhost:8080/api/bootstrap', timeout=1)
+                  break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit('Server did not become ready')
+          PY
+          python blue-servicing/verify_http.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: local-performance-evidence
+          path: blue-servicing/performance.json
